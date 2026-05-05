@@ -3,70 +3,478 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faraaz Shaikh | M.Sc. Physics</title>
-    <!-- Bootstrap 5 for the al-folio look -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Faraaz Shaikh | Portfolio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; color: #333; line-height: 1.6; }
-        .sidebar { background: #f8f9fa; height: 100vh; padding: 2rem; border-right: 1px solid #dee2e6; }
-        .profile-img { width: 150px; height: 150px; object-fit: cover; border-radius: 50%; border: 3px solid #007bff; }
-        .nav-link { color: #555; font-weight: 500; }
-        .nav-link.active { color: #007bff; }
-        .project-card { border: 1px solid #eee; transition: transform 0.2s; }
-        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --border-color: #eeeeee;
+            --accent-color: #007bff;
+            --max-width: 900px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            padding: 0 20px;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding-bottom: 50px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            font-weight: 300;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links button {
+            background: none;
+            border: none;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding-bottom: 4px;
+            transition: color 0.2s;
+        }
+
+        .nav-links button.active {
+            color: var(--text-main);
+            border-bottom: 2px solid var(--text-main);
+        }
+
+        .nav-links button:hover {
+            color: var(--text-main);
+        }
+
+        /* Sections Visibility */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .profile-img {
+            width: 100%;
+            border-radius: 12px;
+            background-color: #f8f9fa;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-info {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            list-style: none;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .contact-info a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent-color);
+        }
+
+        .bio h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .bio p {
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 40px 0 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .skill-category h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: #aaa;
+            margin-bottom: 8px;
+        }
+
+        .skill-list {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* CV Section */
+        .cv-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 50px;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background-color: var(--text-main);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+
+        .download-btn:hover {
+            opacity: 0.9;
+        }
+
+        .cv-category {
+            margin-bottom: 50px;
+        }
+
+        .cv-category h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #aaa;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cv-category h3::after {
+            content: "";
+            flex-grow: 1;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            padding-left: 20px;
+            border-left: 2px solid var(--border-color);
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--bg-color);
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .timeline-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+
+        .timeline-date {
+            font-family: monospace;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .timeline-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .cert-card {
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .cert-card:hover {
+            border-color: var(--accent-color);
+            background-color: #fcfdff;
+        }
+
+        .cert-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            max-width: 80%;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            color: #aaa;
+            font-size: 0.75rem;
+            margin-top: 60px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr; }
+            .sidebar { order: -1; align-items: center; text-align: center; }
+            .profile-img { max-width: 250px; }
+            .cert-grid, .skills-grid { grid-template-columns: 1fr; }
+            .cv-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+        }
     </style>
 </head>
 <body>
 
-<div class="container-fluid">
-    <div class="row">
-        <!-- Sidebar -->
-        <nav class="col-md-3 col-lg-2 d-md-block sidebar">
-            <div class="text-center">
-                <img src="assets/img/prof_pic.jpeg" alt="Faraaz Shaikh" class="profile-img mb-3">
-                <h4>Faraaz Shaikh</h4>
-                <p class="text-muted small">Pune, India</p>
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <div class="logo"><span>Faraaz</span> Shaikh</div>
+            <div class="nav-links">
+                <button onclick="showSection('about')" id="btn-about" class="active">About</button>
+                <button onclick="showSection('cv')" id="btn-cv">CV</button>
             </div>
-            <ul class="nav flex-column mt-4">
-                <li class="nav-item"><a class="nav-link active" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                <li class="nav-item"><a class="nav-link" href="assets/pdf/Faraaz_Shaikh_CV.pdf" target="_blank">Download CV</a></li>
-            </ul>
         </nav>
 
-        <!-- Main Content -->
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-5">
-            <section id="about" class="mb-5">
-                <h2 class="fw-bold">About Me</h2>
-                <p class="lead">M.Sc. Physics Student | <strong>Nowrosjee Wadia College</strong></p>
-                <p>Hi, I am a postgraduate student in physics with an <strong>SGPA of 9.4</strong>. My primary research interests include <strong>Beyond Standard Model Phenomenology</strong>, neutrino mass models, and CP violation.</p>
-                <p>Member of the Indian Network of Physics Students.</p>
-            </section>
-
-            <section id="projects">
-                <h2 class="fw-bold mb-4">Selected Projects</h2>
-                <div class="row row-cols-1 row-cols-md-2 g-4">
-                    <!-- Project 1 -->
-                    <div class="col">
-                        <div class="card h-100 project-card p-3">
-                            <h5 class="fw-bold">Investigation of $(n, \alpha)$ Cross Sections</h5>
-                            <p class="small text-muted">Bachelors Project | Poona College</p>
-                            <p>Computed reaction cross sections for Hafnium and Cadmium isotopes using the TALYS nuclear code.</p>
-                        </div>
-                    </div>
-                    <!-- Project 2 -->
-                    <div class="col">
-                        <div class="card h-100 project-card p-3">
-                            <h5 class="fw-bold">BB84 Quantum Key Distribution</h5>
-                            <p class="small text-muted">Physiquest 2026 - 2nd Prize</p>
-                            <p>Developed a functional quantum cryptography chat application using Python and Qiskit.</p>
-                        </div>
-                    </div>
+        <!-- About Section -->
+        <section id="about" class="page-section active">
+            <div class="about-grid">
+                <div class="sidebar">
+                    <img src="assets/prof_pic.jpeg" alt="Faraaz Shaikh" class="profile-img" onerror="this.src='https://via.placeholder.com/300?text=Profile'">
+                    <ul class="contact-info">
+                        <li>📍 Pune, India</li>
+                        <li>📞 7666306291</li>
+                        <li>📧 <a href="mailto:farusk2904@gmail.com">farusk2904@gmail.com</a></li>
+                        <li>🔗 <a href="https://linkedin.com/in/username" target="_blank">LinkedIn</a></li>
+                    </ul>
                 </div>
-            </section>
-        </main>
-    </div>
-</div>
+                <div class="bio">
+                    <h1>Hi, I'm Faraaz.</h1>
+                    <p class="subtitle">M.Sc. Physics Student | <a href="https://nowrosjeewadiacollege.edu.in/" target="_blank">Nowrosjee Wadia College</a></p>
+                    
+                    <p>I am a postgraduate student in physics at <strong>Nowrosjee Wadia College</strong>, Pune, currently pursuing my Master of Science with an SGPA of 9.4.</p>
+                    
+                    <p>My primary research interests include <strong>Beyond Standard Model Phenomenology</strong>, nuclear physics, neutrino mass models, and CP violation. I am also an individual member of the Indian Network of Physics Students and am actively looking for opportunities to contribute to high-energy physics research.</p>
 
+                    <h3 class="section-title">Technical Skills</h3>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h4>Particle Physics</h4>
+                            <p class="skill-list">MadGraph5_aMC@NLO, Pythia8, ROOT</p>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Nuclear Physics</h4>
+                            <p class="skill-list">TALYS, EXFOR Database</p>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Programming</h4>
+                            <p class="skill-list">Python (Uproot, gwosc, pycbc), C, C++, Bash</p>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Operating Systems</h4>
+                            <p class="skill-list">Linux (Ubuntu 24.04 LTS), Windows</p>
+                        </div>
+                    </div>
+
+                    <h3 class="section-title">Latest Updates</h3>
+                    <ul style="list-style: none; font-size: 0.9rem; color: var(--text-muted);">
+                        <li style="margin-bottom: 10px;">• Awarded <strong>2nd Prize</strong> at Physiquest 2026 for a BB84 quantum key distribution chat application.</li>
+                        <li style="margin-bottom: 10px;">• Completed the <strong>Gravitational Wave Open Data Workshop 2026</strong> at IUCAA.</li>
+                        <li style="margin-bottom: 10px;">• Published <em>"Beyond Standard Model with Neutrino"</em> in BHOUTIKI Pradnya.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CV Section -->
+        <section id="cv" class="page-section">
+            <div class="cv-header">
+                <h2>Curriculum Vitae</h2>
+                <a href="assets/Faraaz_Shaikh_CV.pdf" download class="download-btn">
+                    Download CV (PDF)
+                </a>
+            </div>
+
+            <div class="cv-category">
+                <h3>Education</h3>
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <span class="timeline-title">M.Sc. Physics</span>
+                        <span class="timeline-date">2024 — Present</span>
+                    </div>
+                    <div class="timeline-subtitle">Nowrosjee Wadia College, Pune • SGPA: 9.4</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <span class="timeline-title">B.Sc. Physics</span>
+                        <span class="timeline-date">Graduated 2024</span>
+                    </div>
+                    <div class="timeline-subtitle">University of Pune</div>
+                </div>
+            </div>
+
+            <div class="cv-category">
+                <h3>Research Projects</h3>
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <span class="timeline-title">Investigation of (n, α) and (n, p) cross sections</span>
+                        <span class="timeline-date">Bachelor's Project</span>
+                    </div>
+                    <div class="timeline-subtitle">Hf and Cd isotopes for Generation IV Reactors</div>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">
+                        Computed reaction cross sections using TALYS nuclear code. Analyzed theoretical validity of optical and level density models against EXFOR experimental data.
+                    </p>
+                </div>
+            </div>
+
+            <div class="cv-category">
+                <h3>Certifications & Workshops</h3>
+                <div class="cert-grid">
+                    <a href="assets/GWODW_Certificate.pdf" target="_blank" class="cert-card">
+                        <span class="cert-name">Gravitational Wave Open Data Workshop 2026</span>
+                        <span>↗</span>
+                    </a>
+                    <a href="assets/REYES_Certificate.pdf" target="_blank" class="cert-card">
+                        <span class="cert-name">REYES Nuclear Mentoring Program</span>
+                        <span>↗</span>
+                    </a>
+                    <a href="#" class="cert-card">
+                        <span class="cert-name">NPTEL: Transducers for Instrumentation (71%)</span>
+                        <span>↗</span>
+                    </a>
+                    <a href="#" class="cert-card">
+                        <span class="cert-name">NPTEL: Particle Physics (60%)</span>
+                        <span>↗</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            © <span id="year"></span> Faraaz Shaikh. Minimalist Portfolio.
+        </footer>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-links button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.getElementById(sectionId).classList.add('active');
+            document.getElementById('btn-' + sectionId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
