@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faraaz Shaikh | M.Sc. Physics</title>
+    <!-- Bootstrap 5 for the al-folio look -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #333; line-height: 1.6; }
+        .sidebar { background: #f8f9fa; height: 100vh; padding: 2rem; border-right: 1px solid #dee2e6; }
+        .profile-img { width: 150px; height: 150px; object-fit: cover; border-radius: 50%; border: 3px solid #007bff; }
+        .nav-link { color: #555; font-weight: 500; }
+        .nav-link.active { color: #007bff; }
+        .project-card { border: 1px solid #eee; transition: transform 0.2s; }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <nav class="col-md-3 col-lg-2 d-md-block sidebar">
+            <div class="text-center">
+                <img src="assets/img/prof_pic.jpeg" alt="Faraaz Shaikh" class="profile-img mb-3">
+                <h4>Faraaz Shaikh</h4>
+                <p class="text-muted small">Pune, India</p>
+            </div>
+            <ul class="nav flex-column mt-4">
+                <li class="nav-item"><a class="nav-link active" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                <li class="nav-item"><a class="nav-link" href="assets/pdf/Faraaz_Shaikh_CV.pdf" target="_blank">Download CV</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-5">
+            <section id="about" class="mb-5">
+                <h2 class="fw-bold">About Me</h2>
+                <p class="lead">M.Sc. Physics Student | <strong>Nowrosjee Wadia College</strong></p>
+                <p>Hi, I am a postgraduate student in physics with an <strong>SGPA of 9.4</strong>. My primary research interests include <strong>Beyond Standard Model Phenomenology</strong>, neutrino mass models, and CP violation.</p>
+                <p>Member of the Indian Network of Physics Students.</p>
+            </section>
+
+            <section id="projects">
+                <h2 class="fw-bold mb-4">Selected Projects</h2>
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <!-- Project 1 -->
+                    <div class="col">
+                        <div class="card h-100 project-card p-3">
+                            <h5 class="fw-bold">Investigation of $(n, \alpha)$ Cross Sections</h5>
+                            <p class="small text-muted">Bachelors Project | Poona College</p>
+                            <p>Computed reaction cross sections for Hafnium and Cadmium isotopes using the TALYS nuclear code.</p>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="col">
+                        <div class="card h-100 project-card p-3">
+                            <h5 class="fw-bold">BB84 Quantum Key Distribution</h5>
+                            <p class="small text-muted">Physiquest 2026 - 2nd Prize</p>
+                            <p>Developed a functional quantum cryptography chat application using Python and Qiskit.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
+
+</body>
+</html>
